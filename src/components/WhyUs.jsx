@@ -11,15 +11,15 @@ const items = [
 
 export default function WhyUs() {
   return (
-    <section className="relative bg-[#050505] py-16 sm:py-20 md:py-24">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(99,102,241,0.14),transparent_60%)]" />
+    <section className="relative bg-[#0a0a0a] py-16 sm:py-20 md:py-24">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(251,146,60,0.16),transparent_60%)]" />
       <div className="relative mx-auto max-w-7xl px-6">
         <motion.h3
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300"
+          className="text-center text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-orange-300 to-amber-400"
         >
           Why Play With Us
         </motion.h3>
@@ -35,9 +35,9 @@ export default function WhyUs() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
                 whileHover={{ y: -6 }}
-                className="relative rounded-2xl border border-indigo-400/30 bg-gradient-to-b from-[#0a0a0a] to-[#0e0e0e] p-6 text-center shadow-[0_0_20px_rgba(99,102,241,0.35)]"
+                className="relative rounded-2xl border border-amber-400/30 bg-gradient-to-b from-[#121212] to-[#0e0e0e] p-6 text-center shadow-[0_0_20px_rgba(251,191,36,0.35)]"
               >
-                <Icon className="mx-auto h-6 w-6 text-indigo-300" />
+                <Icon className="mx-auto h-6 w-6 text-amber-300" />
                 <div className="mt-3 font-semibold text-zinc-200">{it.text}</div>
                 <div className="pointer-events-none absolute inset-0 rounded-2xl neon-border" />
               </motion.div>
