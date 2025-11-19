@@ -15,14 +15,16 @@
   html {
     font-family: var(--font-sans);
     font-feature-settings: "rlig" 1, "calt" 1;
+    scroll-behavior: smooth;
+    background: #050505;
   }
 
   body {
-    @apply antialiased;
+    @apply antialiased text-white bg-[#050505];
   }
 }
 
-/* Custom utility classes for shadcn/ui patterns */
+/* Custom utility classes */
 @layer utilities {
   .animate-in {
     animation-name: animateIn;
@@ -42,5 +44,123 @@
     --tw-exit-rotate: initial;
     --tw-exit-translate-x: initial;
     --tw-exit-translate-y: initial;
+  }
+
+  /* Neon borders */
+  .neon-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(from 180deg at 50% 50%, rgba(234,179,8,0.8), rgba(168,85,247,0.8), rgba(6,182,212,0.8), rgba(244,114,182,0.8), rgba(96,165,250,0.8), rgba(234,179,8,0.8));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    box-shadow: 0 0 24px rgba(168,85,247,0.35), 0 0 18px rgba(6,182,212,0.25);
+  }
+
+  .neon-border-flicker::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(90deg, rgba(250,204,21,0.9), rgba(147,51,234,0.9), rgba(34,211,238,0.9));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    animation: flicker 2.6s infinite steps(60) alternate;
+    box-shadow: 0 0 30px rgba(250,204,21,0.35), 0 0 18px rgba(147,51,234,0.25);
+  }
+
+  @keyframes flicker {
+    0% { opacity: 0.7; filter: brightness(0.9); }
+    5% { opacity: 1; }
+    10% { opacity: 0.75; }
+    15% { opacity: 1; }
+    22% { opacity: 0.85; }
+    28% { opacity: 1; }
+    35% { opacity: 0.6; }
+    100% { opacity: 1; filter: brightness(1.05); }
+  }
+
+  /* Sheen hover sweep */
+  .animate-sheen {
+    background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.35) 50%, transparent 100%);
+    transform: translateX(-100%);
+    animation: sheen 1.2s ease;
+  }
+  @keyframes sheen {
+    from { transform: translateX(-120%); }
+    to { transform: translateX(120%); }
+  }
+
+  /* Particle twinkle */
+  .animate-particle {
+    animation-name: particleFloat;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  @keyframes particleFloat {
+    0% { transform: translateY(0) translateX(0); opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { transform: translateY(40px) translateX(10px); opacity: 0.6; }
+  }
+
+  /* Confetti burst */
+  .animate-confetti {
+    animation: confetti 5s ease-in-out infinite;
+  }
+  @keyframes confetti {
+    0% { transform: translateY(-20vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(120vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* Mask gradient for carousels */
+  .mask-gradient {
+    background: linear-gradient(90deg, rgba(5,5,5,1) 0%, rgba(5,5,5,0) 100%);
+  }
+
+  /* Spinning slot reel */
+  .slot-reel {
+    width: 320px;
+    height: 320px;
+    border-radius: 28px;
+    background: repeating-linear-gradient(
+      90deg,
+      rgba(250,204,21,0.9) 0 12px,
+      rgba(168,85,247,0.9) 12px 24px,
+      rgba(6,182,212,0.9) 24px 36px,
+      rgba(244,114,182,0.9) 36px 48px
+    );
+    filter: blur(12px) saturate(1.2);
+    opacity: 0.25;
+    animation: reel 9s linear infinite;
+    box-shadow: 0 0 60px rgba(168,85,247,0.35), inset 0 0 40px rgba(6,182,212,0.25);
+  }
+  @keyframes reel {
+    from { transform: rotate(0deg) translateZ(0); }
+    to { transform: rotate(360deg) translateZ(0); }
+  }
+
+  /* Floating gold coins */
+  .coin {
+    top: -10%;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff7c2 0%, #fde047 35%, #f59e0b 60%, #a16207 100%);
+    box-shadow:
+      0 0 14px rgba(250,204,21,0.6),
+      inset -2px -2px 6px rgba(0,0,0,0.25),
+      inset 2px 2px 6px rgba(255,255,255,0.25);
+    animation: coinFall 10s linear infinite;
+  }
+  @keyframes coinFall {
+    0% { transform: translateY(-10vh) scale(var(--scale,1)) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(120vh) scale(var(--scale,1)) rotate(360deg); opacity: 0.9; }
   }
 }
